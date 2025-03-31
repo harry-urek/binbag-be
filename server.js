@@ -1,5 +1,8 @@
-const app = require("./app.js");
+const app = require("./app");
+const { ConnectDB } = require("./db/mongoose");
 const port = process.env.PORT || 3000;
+
+ConnectDB();
 
 app.listen(port, (err) => {
   if (err) {
