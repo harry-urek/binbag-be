@@ -37,7 +37,7 @@ const loginUser = async (usernameOrEmail, password) => {
     $or: [{ username: usernameOrEmail }, { email: usernameOrEmail }],
   }).select("+password");
   if (!user) {
-    throw new Error("User not found");
+    throw new Error("User not found", user);
 
   }
   const isPasswordValid = await bcrypt.compare(password, user.password);
