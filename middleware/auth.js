@@ -1,10 +1,11 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 require("dotenv").config();
 const JWT_SECRET = process.env.JWT_SECRET;
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const { getUserById } = require('../controllers/userController');
 
 
-const authenticateToken = (req, res, next) => {
+const authenticateToken = async (req, res, next) => {
     const token = req.header("Authorization")?.split(" ")[1];
 
     if (!token) {
@@ -35,5 +36,5 @@ const hashPassword = async (req, res, next) => {
     }
 };
 
-module.exports = { authenticateToken, hashPassword }; 
+module.exports = { authenticateToken, hashPassword };
 

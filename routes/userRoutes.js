@@ -1,5 +1,5 @@
 const express = require("express");
-const { hashPassword, authToken } = require("../middleware/auth");
+const { hashPassword, authenticateToken } = require("../middleware/auth");
 const router = express.Router();
 
 // POST : /user
@@ -14,7 +14,7 @@ router.post("/login", async (req, res) => {
     if (!token) {
       return res
         .status(401)
-        .send({ message: "Inavlid email/username or password." });
+        .send({ message: "Invalid email/username or password." });
     }
     return res.status(200).send({ token: token });
   } catch (err) {
@@ -22,7 +22,7 @@ router.post("/login", async (req, res) => {
   }
 });
 // GET  : /user/profile
-router.get("/profile", authToken, async (req, res) => {
+router.get("/profile", authenticateToken, async (req, res) => {
   try {
     const user = await findUserById(req.user.id);
     return res.status(200).send({ user: user });
@@ -31,7 +31,7 @@ router.get("/profile", authToken, async (req, res) => {
   }
 });
 // PUT  : /user/profile
-router.put("/profile", authToken, async (req, res) => {
+router.put("/profile", authenticateToken, async (req, res) => {
   const values = {
     name: req.body.name,
     email: req.body.email,
