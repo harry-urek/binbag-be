@@ -1,5 +1,11 @@
 const express = require("express");
 const { hashPassword, authenticateToken } = require("../middleware/auth");
+const {
+  createUser,
+  loginUser,
+  getUserById,
+  updateUserById,
+} = require("../controllers/userController");
 const router = express.Router();
 
 // POST : /user
@@ -24,7 +30,7 @@ router.post("/login", async (req, res) => {
 // GET  : /user/profile
 router.get("/profile", authenticateToken, async (req, res) => {
   try {
-    const user = await findUserById(req.user.id);
+    const user = await getUserById(req.user.id);
     return res.status(200).send({ user: user });
   } catch (err) {
     return res.status(500).send({ error: err.message });
@@ -41,9 +47,11 @@ router.put("/profile", authenticateToken, async (req, res) => {
   };
 
   try {
-    const updatedUser = await upadteUserById(req.user.id, values);
+    const updatedUser = await updateUserById(req.user.id, values);
     return res.status(200).send({ user: updatedUser });
   } catch (err) {
     return res.status(500).send({ error: err.message });
   }
 });
+
+module.exports = router;
