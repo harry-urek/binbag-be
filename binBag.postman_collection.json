@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "08b4ef58-0c59-4aa6-b478-fdf6ea690f96",
+		"name": "binBag",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26060952"
+	},
+	"item": [
+		{
+			"name": "register user",
+			"request": {
+				"auth": {
+					"type": "inherit",
+					"inherit": {}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"John Doe\",\r\n  \"username\": \"johndoe123\",\r\n  \"email\": \"john@example.com\",\r\n  \"password\": \"securePassword123\",\r\n  \"address\": \"123 Main St, New York\"\r\n  \r\n  \r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:5000/api/v1/user/register"
+			},
+			"response": []
+		},
+		{
+			"name": "profile update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWIzNmRkMDMxZThjMDBjOTM1MWFjMyIsImlhdCI6MTc0MzQ2ODU3NiwiZXhwIjoxNzQzNDcyMTc2fQ.4_pT__hlTbKcKDQY1eUPzAGFunYkyvxIqC2XdkQneDM"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"johndoe12\",\r\n        \"email\": \"john@exampl.com\"\r\n  \r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:5000/api/v1/user/profile"
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "inherit",
+					"inherit": {}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usernameOrEmail\": \"john@example.com\",\r\n  \"password\": \"securePassword123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:5000/api/v1/user/login"
+			},
+			"response": []
+		},
+		{
+			"name": "get profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZWIzNmRkMDMxZThjMDBjOTM1MWFjMyIsImlhdCI6MTc0MzQ2ODU3NiwiZXhwIjoxNzQzNDcyMTc2fQ.4_pT__hlTbKcKDQY1eUPzAGFunYkyvxIqC2XdkQneDM"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:5000/api/v1/user/profile"
+			},
+			"response": []
+		}
+	]
+}
